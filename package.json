@@ -1,7 +1,7 @@
 {
   "name": "compaction-guard",
   "version": "0.1.0",
-  "description": "Automatic DeepSeek fallback when compaction fails on Zen models, with automatic restore",
+  "description": "Automatic DeepSeek fallback when compaction fails on OpenCode Go models, with automatic restore",
   "type": "module",
   "license": "MIT",
   "author": "hokfei",

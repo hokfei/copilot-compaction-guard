@@ -1,18 +1,19 @@
 # compaction-guard
 
-Automatic fallback when conversation compaction fails on a Zen-backed model.
+Automatic fallback when conversation compaction fails on an OpenCode Go model.
 
 ## The problem
 
 Sessions on `muse-spark-1.3-contributor` (via the custom `opencode` provider,
-`https://opencode.ai/inference/go/openai/v1`) fail automatic compaction: the Zen
-gateway rejects the summary call with `400 ... only auto is supported for
+`https://opencode.ai/inference/go/openai/v1`) fail automatic compaction: the
+OpenCode inference gateway (Zen layer — see the `x-zen-model` response header)
+rejects the summary call with `400 ... only auto is supported for
 tool_choice`. The session then needs a manual model switch for every compaction.
 
 ## What this does
 
 - Watches `session.compaction_start` / `session.compaction_complete` events.
-- When a compaction **fails** on one of our Zen models, switches the session to
+- When a compaction **fails** on one of our OpenCode Go models, switches the session to
   `deepseek-v4.1-flash` (same provider, 1M context) so the automatic retry
   succeeds.
 - When a compaction **succeeds** while the swap is active, restores the

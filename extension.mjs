@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { joinSession } from "@github/copilot-sdk/extension";
 
-// ---- config: Zen-backed custom provider + DeepSeek fallback ----
+// ---- config: OpenCode Go custom provider + DeepSeek fallback ----
 // Env-overridable so the published extension works beyond one machine.
 // If the custom provider is ever recreated (new id), set COMPACTION_GUARD_PROVIDER_ID.
 const PROVIDER_ID = process.env.COMPACTION_GUARD_PROVIDER_ID || "c54b9653-0828-4c58-9a6f-bc67320cfea8";
@@ -62,7 +62,7 @@ async function maybeSwitchToFallback(reason) {
   if (switchedFrom) return; // a swap is already active; never stack or loop
   const row = readSessionRow(session.sessionId);
   const current = row?.model ?? lastCompactionModel;
-  if (!current || !current.startsWith(PROVIDER_ID)) return; // only manage our Zen models
+  if (!current || !current.startsWith(PROVIDER_ID)) return; // only manage our OpenCode Go models
   if (current === FALLBACK_MODEL || current === FALLBACK_SHORT) return; // already on the fallback
   switchedFrom = current;
   try {
