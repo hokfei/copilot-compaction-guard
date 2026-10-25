@@ -1,0 +1,16 @@
+{
+  "name": "compaction-guard",
+  "version": "0.1.0",
+  "description": "Automatic DeepSeek fallback when compaction fails on Zen models, with automatic restore",
+  "type": "module",
+  "license": "MIT",
+  "author": "hokfei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hokfei/copilot-compaction-guard.git"
+  },
+  "engines": { "node": ">=22.5.0" },
+  "scripts": {
+    "test": "node scripts/test-guard.mjs"
+  }
+}
